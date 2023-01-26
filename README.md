@@ -14,6 +14,10 @@
 
 Go to `File` > `Open...` > (navigate to `build.gradle`) > `Open` > `Open as Project` > check `Use auto-import` > `Ok` > voilà!
 
+## Java Version
+
+Any version above Java 11 (i.e: `Java 11 Amazon Coretto 11.0.14`) is enough.
+
 ## How to run tests
 
 There are multiple ways to do it. 
