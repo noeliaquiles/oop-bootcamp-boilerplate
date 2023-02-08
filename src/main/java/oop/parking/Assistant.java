@@ -9,7 +9,10 @@ public class Assistant {
         this.parkings = parkings;
     }
 
-    public void parkCar(Car car){
+    public Parking parkCar(Car car){
+        for(Parking parking : parkings)
+            if(parking.add(car)) return parking;
 
+        return null;
     }
 }

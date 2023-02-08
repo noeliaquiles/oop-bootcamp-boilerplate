@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Parking {
     private Integer space;
+    private List<Car> carList = new ArrayList<>();
 
     public Parking(Integer space) {
         this.space = space;
     }
 
-    private List<Car> carList = new ArrayList<>();
-
     public Boolean add(Car car) {
+        if(carList.size() >= space*0.8) return false;
         return carList.add(car);
     }
 

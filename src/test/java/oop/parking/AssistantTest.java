@@ -7,27 +7,30 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class AssistantTest {
     @Test
     public void itShouldParkCarInParking() {
-        Parking parking = new Parking();
+        Parking parking = new Parking(2);
         Car car = new Car("0000BB");
-        Assistant assistant = new Assistant();
+        Assistant assistant = new Assistant(new ArrayList<Parking>(Arrays.asList(parking)));
 
-        assistant.parkCar(car, parking);
+        assistant.parkCar(car);
 
         assertEquals(parking.getCars().get(0), car);
     }
 
     @Test
     public void itShouldParkCarInFirstParkingWithSpace() {
-        Parking parking1 = new Parking();
-        Parking parking2 = new Parking();
         Car car = new Car("0000BB");
+        Parking parking1 = mock(Parking.class);
+            when(parking1.add(car)).thenReturn(false);
+        Parking parking2 = mock(Parking.class);
+            when(parking2.add(car)).thenReturn(true);
         Assistant assistant = new Assistant(new ArrayList<Parking>(Arrays.asList(parking1,parking2)));
 
-        assistant.parkCar(car);
-        assertEquals();
+        assertEquals(assistant.parkCar(car), parking2);
     }
 }
