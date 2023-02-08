@@ -16,6 +16,11 @@ public class Owner implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        this.setParking((Parking) evt.getNewValue());
+        Parking parking = (Parking) evt.getNewValue();
+
+        if(parking.getOccupation() > 0.75)
+            this.setParking((Parking) evt.getNewValue());
+        else if(parking.getOccupation() < 0.20)
+            this.setParking((Parking) evt.getNewValue());
     }
 }
