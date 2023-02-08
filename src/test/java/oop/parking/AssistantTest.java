@@ -1,7 +1,6 @@
 package oop.parking;
 
 import com.google.common.io.BaseEncoding;
-import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -73,7 +72,7 @@ class AssistantTest {
     }
 
     @Test
-    public void itShouldSendANotificationIfParkingUsageIsOver75Percent() {
+    public void itShouldSendANotificationIfParkingUsageIsOver75PercentInConsole() {
         Parking parking = new Parking(5);
         Assistant assistant = new Assistant(Collections.singletonList(parking));
         Car car1 = new Car("00001BB");
@@ -87,5 +86,22 @@ class AssistantTest {
         Parking parking4 = assistant.parkCar(car4);
 
         assertEquals("We need to buy more Space!!!", outContent.toString());
+    }
+
+    @Test
+    public void itShouldSendANotificationIfParkingUsageIsOver75Percent() {
+        Parking parking = new Parking(5);
+        Assistant assistant = new Assistant(Collections.singletonList(parking));
+        Car car1 = new Car("00001BB");
+        Car car2 = new Car("00002BB");
+        Car car3 = new Car("00003BB");
+        Car car4 = new Car("00004BB");
+
+        Parking parking1 = assistant.parkCar(car1);
+        assistant.parkCar(car2);
+        assistant.parkCar(car3);
+        Parking parking4 = assistant.parkCar(car4);
+
+
     }
 }
