@@ -6,5 +6,4 @@ public class Car {
     public Car(String plate) {
         this.plate = plate;
     }
-
 }

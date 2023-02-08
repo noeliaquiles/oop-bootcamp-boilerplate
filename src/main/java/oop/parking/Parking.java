@@ -12,7 +12,7 @@ public class Parking {
     }
 
     public Boolean add(Car car) {
-        if(carList.size() >= space*0.8) return false;
+        if(carList.size() >= space) return false;
         return carList.add(car);
     }
 
@@ -22,5 +22,9 @@ public class Parking {
 
     public void retrieve(Car car) {
         carList.remove(car);
+    }
+
+    public double getOccupation() {
+        return this.carList.size() / this.space.doubleValue();
     }
 }

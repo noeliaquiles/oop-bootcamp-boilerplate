@@ -10,9 +10,12 @@ public class Assistant {
     }
 
     public Parking parkCar(Car car){
-        for(Parking parking : parkings)
-            if(parking.add(car)) return parking;
-
+        for(Parking parking : parkings){
+            if (parking.getOccupation() < 0.8){
+                parking.add(car);
+                return parking;
+            }
+        }
         return null;
     }
 }

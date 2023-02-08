@@ -29,22 +29,21 @@ class ParkingTest {
     }
 
     @Test
-    public void itShouldNotParkACarIfLotIsFull() {
-        Parking parking = new Parking(5);
-        Car car1 = new Car("00001BB");
-        Car car2 = new Car("00002BB");
-        Car car3 = new Car("00003BB");
-        Car car4 = new Car("00004BB");
-        Car car5 = new Car("00005BB");
+    public void itShouldNotParkCarIfParkingIsFull() {
+        Parking parking = new Parking(1);
+        Car car = new Car("0000BB");
+        Car car2 = new Car("0002BB");
 
-        Boolean firstPark = parking.add(car1);
-        parking.add(car2);
-        parking.add(car3);
-        Boolean secondPark = parking.add(car4);
-        Boolean thirdPark = parking.add(car5);
+        parking.add(car);
+        assertEquals(parking.add(car2), false);
+    }
 
-        assertEquals(true, firstPark);
-        assertEquals( true, secondPark);
-        assertEquals(false, thirdPark);
+    @Test
+    public void itShouldReturnTheOccupationOfTheParking() {
+        Parking parking = new Parking(2);
+        Car car = new Car("0001BB");
+
+        parking.add(car);
+        assertEquals(parking.getOccupation(),0.5);
     }
 }
