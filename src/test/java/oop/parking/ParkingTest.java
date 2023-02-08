@@ -27,4 +27,17 @@ class ParkingTest {
         parking.retrieve(car);
         assert(parking.getCars().isEmpty());
     }
+
+    @Test
+    public void itShouldNotParkACarIfLotIsFull() {
+        Parking parking = new Parking(1);
+        Car car1 = new Car("00001BB");
+        Car car2 = new Car("00002BB");
+
+        Boolean firstPark = parking.add(car1);
+        Boolean secondPark = parking.add(car2);
+
+        assertEquals(true, firstPark);
+        assertEquals(false, secondPark);
+    }
 }

@@ -4,11 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Parking {
+    private Integer space;
+
+    public Parking(Integer space) {
+        this.space = space;
+    }
 
     private List<Car> carList = new ArrayList<>();
 
-    public void add(Car car) {
-        carList.add(car);
+    public Boolean add(Car car) {
+        return carList.add(car);
     }
 
     public List<Car> getCars() {

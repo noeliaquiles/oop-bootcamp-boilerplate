@@ -7,11 +7,4 @@ public class Car {
         this.plate = plate;
     }
 
-    public void park(Parking parking) {
-        parking.add(this);
-    }
-
-    public void retrieve(Parking parking){
-        parking.retrieve(this);
-    }
 }
