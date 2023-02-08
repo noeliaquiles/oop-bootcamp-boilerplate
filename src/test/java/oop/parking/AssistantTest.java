@@ -1,7 +1,14 @@
 package oop.parking;
 
+import com.google.common.io.BaseEncoding;
+import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,6 +18,18 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class AssistantTest {
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+    @BeforeEach
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @AfterEach
+    public void restoreStreams() {
+        System.setOut(originalOut);
+    }
+
     @Test
     public void itShouldParkCarInParking() {
         Parking parking = new Parking(2);
@@ -51,5 +70,22 @@ class AssistantTest {
         assertEquals(parking, parking1);
         assertEquals( parking, parking4);
         assertEquals(null, parking5);
+    }
+
+    @Test
+    public void itShouldSendANotificationIfParkingUsageIsOver75Percent() {
+        Parking parking = new Parking(5);
+        Assistant assistant = new Assistant(Collections.singletonList(parking));
+        Car car1 = new Car("00001BB");
+        Car car2 = new Car("00002BB");
+        Car car3 = new Car("00003BB");
+        Car car4 = new Car("00004BB");
+
+        Parking parking1 = assistant.parkCar(car1);
+        assistant.parkCar(car2);
+        assistant.parkCar(car3);
+        Parking parking4 = assistant.parkCar(car4);
+
+        assertEquals("We need to buy more Space!!!", outContent.toString());
     }
 }

@@ -13,6 +13,7 @@ public class Assistant {
         for(Parking parking : parkings){
             if (parking.getOccupation() < 0.8){
                 parking.add(car);
+                if(parking.getOccupation() > 0.75) System.out.print("We need to buy more Space!!!");
                 return parking;
             }
         }
