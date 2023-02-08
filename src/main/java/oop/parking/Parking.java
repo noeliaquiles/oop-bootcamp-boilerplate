@@ -14,4 +14,8 @@ public class Parking {
     public List<Car> getCars() {
         return carList;
     }
+
+    public void retrieve(Car car) {
+        carList.remove(car);
+    }
 }

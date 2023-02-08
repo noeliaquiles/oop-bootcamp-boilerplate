@@ -6,8 +6,4 @@ public class Car {
     public Car(String plate) {
         this.plate = plate;
     }
-
-    public void parkCar(Parking parking){
-        parking.add(this);
-    }
 }
